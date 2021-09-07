@@ -47,4 +47,4 @@ async def nuke(ctx):
 
 TOKEN = '{your_token}'
 client.run(TOKEN)
-"# nuke-bot" 
+# Nuke Bot
